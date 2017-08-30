@@ -2,21 +2,21 @@
 
 using namespace std;
 
-void draw (char* ttt);
-void playTicTacToe(char *ttt);
-bool gameComplete (char *ttt);
+void draw();
+void play();
+bool game(char *ttt);
 
 int main() {
 
-					// define an array of 9 elements to hold the characters
-					// in your tic-tac-toe square; assume a default character
-					// like '-' or something
-	char tic_tac_toe[9] = {.......};
+	char board[9] = {1, 2, 3,	// Basic board.
+					4, 5, 6,
+					7, 8, 9};
+	const int Ex = 1;
+	const int Oh = 2;
 
-					// draw the array
 	draw(ttt);
 
-	playTicTacToe(ttt);	
+	play(ttt);
 
 	return 0;
 }
@@ -38,8 +38,7 @@ void playTicTacToe (char *ttt) {
 
 // This function draws the tic-tac-toe square after each move
 void draw(char *ttt) {
-	for (int k = 0; k < 9; k++) {
-	}
+	cout << << endl;
 }
 
 
