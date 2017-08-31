@@ -12,7 +12,7 @@ All output are to the console. Follow these guidelines:
 	Make sure you test your implementation well against boundary cases, illegal input, etc.
 
 3)	Turn in your source file to Canvas by the deadline.
-	There will be no extensions or late credit.
+	There will be no extensions or late credit. vvv
  */
 #include <iostream>
 using namespace std;
