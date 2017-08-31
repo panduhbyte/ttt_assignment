@@ -12,22 +12,26 @@ All output are to the console. Follow these guidelines:
 	Make sure you test your implementation well against boundary cases, illegal input, etc.
 
 3)	Turn in your source file to Canvas by the deadline.
-	There will be no extensions or late credit. vvv
+	There will be no extensions or late credit.
  */
 #include <iostream>
 using namespace std;
 
-char board[9] = {1, 2, 3,	// Basic board.
-				4, 5, 6,
-				7, 8, 9};
+char board[9] = {'1', '2', '3',	// Basic board.
+				'4', '5', '6',
+				'7', '8', '9'};
 int player;
 
-int main(){
-	draw()
-
-	play();
-
-	return 0;
+void draw(){
+	cout << "[ "<< board[0] << " ]";
+	cout << "[ "<< board[1] << " ]";
+	cout << "[ "<< board[2] << " ]\n"; // End of 1st row.
+	cout << "[ "<< board[3] << " ]";
+	cout << "[ "<< board[4] << " ]";
+	cout << "[ "<< board[5] << " ]\n"; // End of 1st row.
+	cout << "[ "<< board[6] << " ]";
+	cout << "[ "<< board[7] << " ]";
+	cout << "[ "<< board[8] << " ]\n"; // End of 1st row.
 }
 
 void play(int player){
@@ -53,4 +57,12 @@ void draw(){
 // a diagonal should be filled with the same character for it to be complete.
 
 bool gameComplete() {
+}
+
+int main(){
+	draw()
+
+	play();
+
+	return 0;
 }
