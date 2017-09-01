@@ -85,9 +85,10 @@ int main(){
 	bool end_game = false;
 
 	do{
+		i = i + 1;
+		cout << "Turn " << i << " out of 9.\n";
 		play(player);
 		end_game = check();
-		i = i + 1;
 
 		if(end_game == true){
 			cout << "Player " << player << " has won.\n";
