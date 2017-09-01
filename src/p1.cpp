@@ -55,6 +55,9 @@ void play(int player){
 		cin.ignore();
 		cout << "Your entry is invalid and turn is skipped.\n";
 	}
+	else if(box > 9 || box < 1){ // Check if int is 1-9
+		cout << "Your entry is invalid and turn is skipped.\n";
+	}
 	else{
 		box = box - 1;
 		if(board[box] == 'X' || board[box] == 'O'){ // Checks if location is already used
@@ -93,7 +96,7 @@ int main(){
 		}
 		else if(player == 1) player = 2;
 		else player = 1;
-	}while(i < 9);
+	}while(i < 9); // Set only for 9 turns. Quick. Simple. No redoes.
 
 	if (end_game == false) cout << "Cat's game.\n";
 	draw();
