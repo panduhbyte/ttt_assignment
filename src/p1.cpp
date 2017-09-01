@@ -1,9 +1,13 @@
-
+/*
+ * Simple Tic-Tac-Toe
+ * by Charles Valdez
+ */
 #include <iostream>
 using namespace std;
 
 char board[9];
 
+// Prints the board.
 void draw(){
 	cout << "[ "<< board[0] << " ]";
 	cout << "[ "<< board[1] << " ]";
@@ -16,6 +20,7 @@ void draw(){
 	cout << "[ "<< board[8] << " ]\n"; // End of 1st row.
 }
 
+// Compares rows, columns, and diagonals for equal characters
 bool check(){
 	bool r;
 	// Checks rows.
@@ -34,6 +39,7 @@ bool check(){
 	return r;
 }
 
+// Tic-tac-toe logic. Takes in integer to state who's turn it is and which char to place within array.
 void play(int player){
 	int box;
 
@@ -44,14 +50,17 @@ void play(int player){
 	draw();
 
 	cout << "Player " << player << " enter a number 1-9.\n";
-	if( !(cin >> box) ){
+	if( !(cin >> box) ){ // Checks for integer
 		cin.clear();
 		cin.ignore();
 		cout << "Your entry is invalid and turn is skipped.\n";
 	}
 	else{
 		box = box - 1;
-		board[box] = xo;
+		if(board[box] == 'X' || board[box] == 'O'){ // Checks if location is already used
+			cout << "You've chosen an occupied space and turn is skipped.\n";
+		}
+		else board[box] = xo;
 	}
 }
 
