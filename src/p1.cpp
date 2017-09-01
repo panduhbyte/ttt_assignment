@@ -47,22 +47,29 @@ void play(int player){
 
 }
 
-// This function draws the tic-tac-toe square after each move
-void draw(){
-	cout << << endl;
-}
-
-
 // This function determines if the game has ended - either a row, column or
 // a diagonal should be filled with the same character for it to be complete.
 
-bool gameComplete() {
+bool check(){
+	bool r;
+	// Checks rows.
+	if 		(board[0] == board[1] && board[1] == board[2]) r = true;
+	else if (board[3] == board[4] && board[4] == board[5]) r = true;
+	else if (board[6] == board[7] && board[7] == board[8]) r = true;
+	// Checks columns.
+	else if (board[0] == board[3] && board[3] == board[6]) r = true;
+	else if (board[1] == board[4] && board[4] == board[7]) r = true;
+	else if (board[2] == board[5] && board[5] == board[8]) r = true;
+	// Checks diagonals.
+	else if (board[0] == board[4] && board[4] == board[8]) r = true;
+	else if (board[2] == board[4] && board[4] == board[6]) r = true;
+	else r = false;
+
+	return r;
 }
 
-int main(){
-	draw()
 
-	play();
+int main(){
 
 	return 0;
 }
