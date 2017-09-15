@@ -1,50 +1,121 @@
+/*
+ * Simple Tic-Tac-Toe
+ * by Charles Valdez
+ */
 #include <iostream>
-
 using namespace std;
 
-void draw (char* ttt);
-void playTicTacToe(char *ttt);
-bool gameComplete (char *ttt);
+char board[9];
 
-int main() {
-
-					// define an array of 9 elements to hold the characters
-					// in your tic-tac-toe square; assume a default character
-					// like '-' or something
-	char tic_tac_toe[9] = {.......};
-
-					// draw the array
-	draw(ttt);
-
-	playTicTacToe(ttt);	
-
-	return 0;
+// Prints the board.
+void draw(){
+	cout << "[ "<< board[0] << " ]";
+	cout << "[ "<< board[1] << " ]";
+	cout << "[ "<< board[2] << " ]\n"; // End of 1st row.
+	cout << "[ "<< board[3] << " ]";
+	cout << "[ "<< board[4] << " ]";
+	cout << "[ "<< board[5] << " ]\n"; // End of 1st row.
+	cout << "[ "<< board[6] << " ]";
+	cout << "[ "<< board[7] << " ]";
+	cout << "[ "<< board[8] << " ]\n"; // End of 1st row.
 }
 
-void playTicTacToe (char *ttt) {
-			// this function contains  the game logic
-			// assume a move by player A, followed by player B
-			// after each move, you must check if the respective player
-			// has won, in which case the game is complete; use a separate
-			// function to accomplish this.
+// Compares rows, columns, and diagonals for equal characters
+bool check(){
+	bool r;
+	// Checks rows.
+	if 		(board[0] == board[1] && board[1] == board[2]) r = true;
+	else if (board[3] == board[4] && board[4] == board[5]) r = true;
+	else if (board[6] == board[7] && board[7] == board[8]) r = true;
+	// Checks columns.
+	else if (board[0] == board[3] && board[3] == board[6]) r = true;
+	else if (board[1] == board[4] && board[4] == board[7]) r = true;
+	else if (board[2] == board[5] && board[5] == board[8]) r = true;
+	// Checks diagonals.
+	else if (board[0] == board[4] && board[4] == board[8]) r = true;
+	else if (board[2] == board[4] && board[4] == board[6]) r = true;
+	else r = false;
 
-			// players will enter the position where they want to enter in
-			// the tic-tac-toe square. Assume the numbering from 1 to 9 
-			// in row-major order 
-
-			// use cin and cout for input and output
-
+	return r;
 }
 
-// This function draws the tic-tac-toe square after each move
-void draw(char *ttt) {
-	for (int k = 0; k < 9; k++) {
+// Tic-tac-toe logic. Takes in integer to state who's turn it is and which char to place within array.
+void play(int player){
+	int box;
+
+	char xo;
+	if(player == 1) xo = 'X';
+	else xo = 'O';
+
+	draw();
+
+	cout << "Player " << player << " enter a number 1-9.\n";
+	if( !(cin >> box) ){ // Checks for integer
+		cin.clear();
+		cin.ignore();
+		cout << "Your entry is invalid and turn is skipped.\n";
+	}
+	else if(box > 9 || box < 1){ // Check if int is 1-9
+		cout << "Your entry is invalid and turn is skipped.\n";
+	}
+	else{
+		box = box - 1;
+		if(board[box] == 'X' || board[box] == 'O'){ // Checks if location is already used
+			cout << "You've chosen an occupied space and turn is skipped.\n";
+		}
+		else board[box] = xo;
 	}
 }
 
 
-// This function determines if the game has ended - either a row, column or
-// a diagonal should be filled with the same character for it to be complete.
+int main(){
 
-bool gameComplete(char *ttt) {
+	board[0] = '1';
+	board[1] = '2';
+	board[2] = '3';
+	board[3] = '4';
+	board[4] = '5';
+	board[5] = '6';
+	board[6] = '7';
+	board[7] = '8';
+	board[8] = '9';
+
+	int player = 1;
+	int i = 0;
+	bool end_game = false;
+
+	do{
+		i = i + 1;
+		cout << "Turn " << i << " out of 9.\n";
+		play(player);
+		end_game = check();
+
+		if(end_game == true){
+			cout << "Player " << player << " has won.\n";
+			draw();
+			return 0;
+		}
+		else if(player == 1) player = 2;
+		else player = 1;
+	}while(i < 9); // Set only for 9 turns. Quick. Simple. No redoes.
+
+	if (end_game == false) cout << "Cat's game.\n";
+	draw();
+	return 0;
 }
+/*
+In this project, you will implement the tic-tac-toe game for a 3 by 3 square.
+The game will be played by two players (players A and B).
+All output are to the console. Follow these guidelines:
+
+1)	Draw the board (ensure its nicely formatted as a square)
+	after each move and make sure to prompt the user with enough information on what to input;
+	if the user tries to use an occupied space, then he effectively loses his move (no redoes!);
+	any illegal characters input also results in loss of the move (your implementation will check for all this).
+
+2)	You are given the outline of the program that you can use to start the project.
+	Make sure you test your implementation well against boundary cases, illegal input, etc.
+
+3)	Turn in your source file to Canvas by the deadline.
+	There will be no extensions or late credit.
+ */
